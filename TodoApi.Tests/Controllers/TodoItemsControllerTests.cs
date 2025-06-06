@@ -92,7 +92,11 @@ public class TodoItemsControllerTests
         await context.SaveChangesAsync();
 
         var controller = new TodoItemsController(context);
-        var result = await controller.UpdateItem(1, item.Id, new UpdateTodoItem { Description = "After" });
+        var result = await controller.UpdateItem(
+            1,
+            item.Id,
+            new UpdateTodoItem { Description = "After" }
+        );
 
         var ok = Assert.IsType<OkObjectResult>(result);
         var updated = Assert.IsType<TodoItem>(ok.Value);
@@ -104,7 +108,12 @@ public class TodoItemsControllerTests
     {
         using var context = new TodoContext(DatabaseContextOptions());
         PopulateDatabaseWithTodoList(context);
-        var item = new TodoItem { Description = "To Complete", IsCompleted = false, TodoListId = 1 };
+        var item = new TodoItem
+        {
+            Description = "To Complete",
+            IsCompleted = false,
+            TodoListId = 1,
+        };
         context.TodoItem.Add(item);
         await context.SaveChangesAsync();
 

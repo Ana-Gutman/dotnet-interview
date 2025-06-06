@@ -1,4 +1,4 @@
-.using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TodoApi.Dtos;
 using TodoApi.Models;
@@ -30,7 +30,7 @@ public class TodoItemsController : ControllerBase
         {
             Description = payload.Description,
             IsCompleted = false,
-            TodoListId = todoListId
+            TodoListId = todoListId,
         };
 
         _context.TodoItem.Add(item);
@@ -43,8 +43,9 @@ public class TodoItemsController : ControllerBase
     [HttpGet("{itemId}")]
     public async Task<ActionResult<TodoItem>> GetItem(long todoListId, long itemId)
     {
-        var item = await _context.TodoItem
-            .FirstOrDefaultAsync(i => i.TodoListId == todoListId && i.Id == itemId);
+        var item = await _context.TodoItem.FirstOrDefaultAsync(i =>
+            i.TodoListId == todoListId && i.Id == itemId
+        );
 
         if (item == null)
         {
@@ -56,10 +57,15 @@ public class TodoItemsController : ControllerBase
 
     // PUT: api/todolists/1/items/5
     [HttpPut("{itemId}")]
-    public async Task<IActionResult> UpdateItem(long todoListId, long itemId, UpdateTodoItem payload)
+    public async Task<IActionResult> UpdateItem(
+        long todoListId,
+        long itemId,
+        UpdateTodoItem payload
+    )
     {
-        var item = await _context.TodoItem
-            .FirstOrDefaultAsync(i => i.TodoListId == todoListId && i.Id == itemId);
+        var item = await _context.TodoItem.FirstOrDefaultAsync(i =>
+            i.TodoListId == todoListId && i.Id == itemId
+        );
 
         if (item == null)
         {
@@ -76,8 +82,9 @@ public class TodoItemsController : ControllerBase
     [HttpPatch("{itemId}/complete")]
     public async Task<IActionResult> CompleteItem(long todoListId, long itemId)
     {
-        var item = await _context.TodoItem
-            .FirstOrDefaultAsync(i => i.TodoListId == todoListId && i.Id == itemId);
+        var item = await _context.TodoItem.FirstOrDefaultAsync(i =>
+            i.TodoListId == todoListId && i.Id == itemId
+        );
 
         if (item == null)
         {
@@ -90,13 +97,13 @@ public class TodoItemsController : ControllerBase
         return Ok(item);
     }
 
-
     // DELETE: api/todolists/1/items/5
     [HttpDelete("{itemId}")]
     public async Task<IActionResult> DeleteItem(long todoListId, long itemId)
     {
-        var item = await _context.TodoItem
-            .FirstOrDefaultAsync(i => i.TodoListId == todoListId && i.Id == itemId);
+        var item = await _context.TodoItem.FirstOrDefaultAsync(i =>
+            i.TodoListId == todoListId && i.Id == itemId
+        );
 
         if (item == null)
         {
