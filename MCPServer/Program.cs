@@ -13,9 +13,7 @@ builder.Logging.AddConsole(options =>
     options.LogToStandardErrorThreshold = LogLevel.Information;
 });
 
-builder.Services.AddMcpServer()
-    .WithStdioServerTransport()
-    .WithToolsFromAssembly();
+builder.Services.AddMcpServer().WithStdioServerTransport().WithToolsFromAssembly();
 
 builder.Services.AddSingleton(_ =>
 {

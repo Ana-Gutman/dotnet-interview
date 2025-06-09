@@ -1,16 +1,17 @@
-using Microsoft.AspNetCore.Mvc;
-using ModelContextProtocol.Server;
 using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
+using Microsoft.AspNetCore.Mvc;
+using ModelContextProtocol.Server;
 
 namespace McpServer.Tools;
 
 internal static class HttpClientExt
 {
     public static async Task<JsonDocument> ReadJsonDocumentAsync(
-        this HttpClient client, 
-        string requestUri)
+        this HttpClient client,
+        string requestUri
+    )
     {
         using var response = await client.GetAsync(requestUri);
         response.EnsureSuccessStatusCode();
@@ -34,7 +35,8 @@ public static class TodoItemTools
     public static async Task<string> CreateTodoItem(
         HttpClient client,
         [Description("ID of the todo list")] long todoListId,
-        [Description("Description of the new item")] string description)
+        [Description("Description of the new item")] string description
+    )
     {
         var url = $"/api/todolists/{todoListId}/items";
         var payload = new { description };
@@ -43,10 +45,10 @@ public static class TodoItemTools
             Encoding.UTF8,
             "application/json"
         );
-        
+
         using var response = await client.PostAsync(url, content);
         response.EnsureSuccessStatusCode();
-        
+
         using var stream = await response.Content.ReadAsStreamAsync();
         using var doc = await JsonDocument.ParseAsync(stream);
         return FormatTodoItem(doc.RootElement);
@@ -56,7 +58,8 @@ public static class TodoItemTools
     public static async Task<string> GetTodoItem(
         HttpClient client,
         [Description("ID of the todo list")] long todoListId,
-        [Description("ID of the todo item")] long itemId)
+        [Description("ID of the todo item")] long itemId
+    )
     {
         var url = $"/api/todolists/{todoListId}/items/{itemId}";
         using var doc = await client.ReadJsonDocumentAsync(url);
@@ -68,7 +71,8 @@ public static class TodoItemTools
         HttpClient client,
         [Description("ID of the todo list")] long todoListId,
         [Description("ID of the todo item")] long itemId,
-        [Description("New description for the item")] string newDescription)
+        [Description("New description for the item")] string newDescription
+    )
     {
         var url = $"/api/todolists/{todoListId}/items/{itemId}";
         var payload = new { description = newDescription };
@@ -77,10 +81,10 @@ public static class TodoItemTools
             Encoding.UTF8,
             "application/json"
         );
-        
+
         using var response = await client.PutAsync(url, content);
         response.EnsureSuccessStatusCode();
-        
+
         using var stream = await response.Content.ReadAsStreamAsync();
         using var doc = await JsonDocument.ParseAsync(stream);
         return FormatTodoItem(doc.RootElement);
@@ -90,12 +94,13 @@ public static class TodoItemTools
     public static async Task<string> CompleteTodoItem(
         HttpClient client,
         [Description("ID of the todo list")] long todoListId,
-        [Description("ID of the todo item")] long itemId)
+        [Description("ID of the todo item")] long itemId
+    )
     {
         var url = $"/api/todolists/{todoListId}/items/{itemId}/complete";
         using var response = await client.PatchAsync(url, null);
         response.EnsureSuccessStatusCode();
-        
+
         using var stream = await response.Content.ReadAsStreamAsync();
         using var doc = await JsonDocument.ParseAsync(stream);
         return FormatTodoItem(doc.RootElement);
@@ -105,7 +110,8 @@ public static class TodoItemTools
     public static async Task<string> DeleteTodoItem(
         HttpClient client,
         [Description("ID of the todo list")] long todoListId,
-        [Description("ID of the todo item")] long itemId)
+        [Description("ID of the todo item")] long itemId
+    )
     {
         var url = $"/api/todolists/{todoListId}/items/{itemId}";
         using var response = await client.DeleteAsync(url);
