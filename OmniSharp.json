@@ -1,0 +1,10 @@
+{
+  "msbuild": {
+    "useLegacySdkResolver": false
+  },
+  "sdk": {
+    "includePrereleases": true
+  },
+  "fallbackPackageFolders": []
+}
+
