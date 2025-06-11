@@ -112,7 +112,7 @@ For Windows:
 My example of absolute path: "C:\\dotnet-interview\\MCPServer\\MCPServer.csproj"
 
 **Important** : 
-- The --no-build flag must appear before --project, otherwise Claude will attempt to execute a missing .exe and crash.
+- The --no-build flag must appear before --project option. Any flags placed after --project are treated as application arguments (or ignored by the .NET CLI), so if you put --no-build after --project, the CLI never sees it—resulting in a failed run because the executable hasn’t been built.
 - Ensure the path has no trailing commas and is an absolute Windows path.
 - Place the project outside of synced folders (e.g., OneDrive) to avoid file-lock issues.
 
