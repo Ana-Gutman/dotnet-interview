@@ -83,7 +83,7 @@ Press Ctrl + C to stop the server.
 
 ---
 
-This enables AI-driven clients to send natural-language commands.
+This enables AI-driven clients to send natural-language commands because it generates a MCPServer.exe file.  
 
 ## 💻 Configure Claude Desktop
 
@@ -111,7 +111,9 @@ For Windows:
 ```
 My example of absolute path: "C:\\dotnet-interview\\MCPServer\\MCPServer.csproj"
 
-**NOTE** : Avoid placing the project in OneDrive or synced folders to prevent file-lock conflicts.
+**NOTES** : 
+- Avoid placing the project in OneDrive or synced folders to prevent file-lock conflicts.
+- In my case, placing the "--no-build" flag after the Absolute Path as suggested in the documentation generated comiling errors.
 
 ---
 
@@ -121,10 +123,10 @@ My example of absolute path: "C:\\dotnet-interview\\MCPServer\\MCPServer.csproj"
 ## 🧠 Natural Language Prompt Examples
 
 Use these examples in Claude Desktop (or any MCP-enabled client) once the MCP server is running:
-- Create: Create a todo item in list "Work" with description "Finish report"
-- List: List all items in "Personal"
-- Update: Mark item ID 3 as completed
-- Delete: Remove item ID 5 from "Errands"
+- Create: Create a todo item in list '1' with description 'Finish report'
+- Get: Get details of item in '1' in list '1'
+- Update: Mark item ID '1' as completed
+- Delete: Remove item ID '1' from '1'
 
 The MCP server will interpret these commands and perform the corresponding API calls.
 
