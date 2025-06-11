@@ -111,13 +111,15 @@ For Windows:
 ```
 My example of absolute path: "C:\\dotnet-interview\\MCPServer\\MCPServer.csproj"
 
-**NOTES** : 
-- Avoid placing the project in OneDrive or synced folders to prevent file-lock conflicts.
-- In my case, placing the "--no-build" flag after the Absolute Path as suggested in the documentation generated comiling errors.
+**Important** : 
+- The --no-build flag must appear before --project, otherwise Claude will attempt to execute a missing .exe and crash.
+- Ensure the path has no trailing commas and is an absolute Windows path.
+- Place the project outside of synced folders (e.g., OneDrive) to avoid file-lock issues.
+
 
 ---
 
-3. Save and restart Claude Desktop
+3. Save and **restart** Claude Desktop
 
 
 ## 🧠 Natural Language Prompt Examples
@@ -125,7 +127,8 @@ My example of absolute path: "C:\\dotnet-interview\\MCPServer\\MCPServer.csproj"
 Use these examples in Claude Desktop (or any MCP-enabled client) once the MCP server is running:
 - Create: Create a todo item in list '1' with description 'Finish report'
 - Get: Get details of item in '1' in list '1'
-- Update: Mark item ID '1' as completed
+- Update: Update the description of item 1 in list 1 to "Buy milk".
+- Complete: Mark the todo item with ID 1 in list 1 as completed.
 - Delete: Remove item ID '1' from '1'
 
 The MCP server will interpret these commands and perform the corresponding API calls.
