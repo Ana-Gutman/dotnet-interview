@@ -1,0 +1,287 @@
+{
+	"info": {
+		"_postman_id": "391d054a-3057-4f3e-9712-e495b71a65ff",
+		"name": "Crunchloop Interview",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45555248",
+		"_collection_link": "https://ana-8271099.postman.co/workspace/Ana's-Workspace~65862364-febf-4e32-837f-dca1f4964f0d/collection/45555248-391d054a-3057-4f3e-9712-e495b71a65ff?action=share&source=collection_link&creator=45555248"
+	},
+	"item": [
+		{
+			"name": "TodoLists",
+			"item": [
+				{
+					"name": "Get todo lists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5083/api/todolists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post todoList",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"name\": \"Tareas de hoy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5083/api/todolists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Tareas urgentes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "TodoItem",
+			"item": [
+				{
+					"name": "Create Item for list",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"description\": \"Tareas de hoy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/2/items",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"2",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "edit by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"description\": \"Tareas urgentes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/1/items/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"1",
+								"items",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "complete task",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/2/items/4/complete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"2",
+								"items",
+								"4",
+								"complete"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5083/api/todolists/2/items/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists",
+								"2",
+								"items",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get todo Item",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5083/api/todolists",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5083",
+							"path": [
+								"api",
+								"todolists"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
